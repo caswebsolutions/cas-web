@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CAS WEB | Desarrollo Web Profesional</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #0a0f1c;
+      color: #e5e7eb;
+    }
+
+    header {
+      padding: 90px 20px;
+      text-align: center;
+      background: radial-gradient(circle at top, #1e293b, #0a0f1c);
+    }
+
+    header h1 {
+      font-size: 52px;
+      color: #38bdf8;
+    }
+
+    header p {
+      font-size: 18px;
+      margin-top: 10px;
+      color: #cbd5e1;
+    }
+
+    .cta {
+      margin-top: 25px;
+      display: inline-block;
+      padding: 14px 20px;
+      background: #38bdf8;
+      color: #000;
+      font-weight: bold;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .cta:hover {
+      background: #0ea5e9;
+      transform: scale(1.05);
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      background: #0f172a;
+      padding: 14px;
+      text-align: center;
+      border-bottom: 1px solid #1f2937;
+      z-index: 1000;
+    }
+
+    nav a {
+      color: #38bdf8;
+      margin: 0 12px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    section {
+      max-width: 1050px;
+      margin: auto;
+      padding: 70px 20px;
+    }
+
+    h2 {
+      font-size: 30px;
+      color: #38bdf8;
+      margin-bottom: 20px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: #111827;
+      padding: 22px;
+      border-radius: 14px;
+      border: 1px solid #1f2937;
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      border-color: #38bdf8;
+    }
+
+    ul {
+      padding-left: 18px;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 5px 10px;
+      background: #1f2937;
+      color: #38bdf8;
+      font-size: 12px;
+      border-radius: 6px;
+      margin: 4px;
+    }
+
+    .price {
+      font-size: 20px;
+      color: #22c55e;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      background: #0f172a;
+      color: #94a3b8;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>CAS WEB</h1>
+  <p>Desarrollo web profesional para negocios que quieren vender más por internet</p>
+
+  <a class="cta" href="https://wa.me/573132703266" target="_blank">
+    🚀 Solicitar página web
+  </a>
+</header>
+
+<nav>
+  <a href="#sobre">Sobre mí</a>
+  <a href="#servicios">Servicios</a>
+  <a href="#experiencia">Experiencia</a>
+  <a href="#proyectos">Proyectos</a>
+  <a href="#contacto">Contacto</a>
+</nav>
+
+<section id="sobre">
+  <h2>Sobre mí</h2>
+  <div class="card">
+    Soy desarrollador web enfocado en crear páginas modernas, rápidas y orientadas a ventas.
+    Ayudo a negocios pequeños y emprendedores a tener presencia digital profesional y generar clientes.
+  </div>
+</section>
+
+<section id="servicios">
+  <h2>Servicios</h2>
+
+  <div class="grid">
+
+    <div class="card">
+      <h3>Página web básica</h3>
+      <p>Ideal para negocios que empiezan.</p>
+      <div class="price">Desde $150.000 COP</div>
+    </div>
+
+    <div class="card">
+      <h3>Landing page de ventas</h3>
+      <p>Diseñada para convertir visitas en clientes por WhatsApp.</p>
+      <div class="price">Desde $250.000 COP</div>
+    </div>
+
+    <div class="card">
+      <h3>Portafolio profesional</h3>
+      <p>Ideal para freelancers o profesionales.</p>
+      <div class="price">Desde $200.000 COP</div>
+    </div>
+
+  </div>
+</section>
+
+<section id="experiencia">
+  <h2>Experiencia</h2>
+
+  <div class="card">
+    <h3>Auxiliar operativo y administrativo</h3>
+    <p>Empresa familiar – sector comercio/logística</p>
+    <ul>
+      <li>Control de inventarios y mercancía</li>
+      <li>Registro de entradas y salidas</li>
+      <li>Atención al cliente</li>
+      <li>Apoyo administrativo y logístico</li>
+    </ul>
+  </div>
+</section>
+
+<section id="proyectos">
+  <h2>Proyectos</h2>
+
+  <div class="grid">
+    <div class="card">
+      <h3>Web Base44</h3>
+      <p>Proyecto de página web creada con plataforma no-code.</p>
+      <a class="cta" href="https://web-lify.base44.app" target="_blank">
+        Ver proyecto
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="contacto">
+  <h2>Contacto</h2>
+
+  <div class="card">
+    <p>¿Quieres una página web para tu negocio?</p>
+    <p>Te ayudo a crearla y empezar a vender por internet.</p>
+
+    <a class="cta" href="https://wa.me/573132703266" target="_blank">
+      📲 Hablar por WhatsApp
+    </a>
+  </div>
+</section>
+
+<footer>
+  © 2026 CAS WEB - Desarrollo web profesional
+</footer>
+
+</body>
+</html>
