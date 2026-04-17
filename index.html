@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CAS WEB | Desarrollo Web Profesional</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #0a0f1c;
+      color: #e5e7eb;
+    }
+
+    header {
+      padding: 90px 20px;
+      text-align: center;
+      background: radial-gradient(circle at top, #1e293b, #0a0f1c);
+    }
+
+    header h1 {
+      font-size: 52px;
+      color: #38bdf8;
+    }
+
+    header p {
+      font-size: 18px;
+      margin-top: 10px;
+      color: #cbd5e1;
+    }
+
+    .cta {
+      margin-top: 25px;
+      display: inline-block;
+      padding: 14px 20px;
+      background: #38bdf8;
+      color: #000;
+      font-weight: bold;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .cta:hover {
+      background: #0ea5e9;
+      transform: scale(1.05);
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      background: #0f172a;
+      padding: 14px;
+      text-align: center;
+      border-bottom: 1px solid #1f2937;
+      z-index: 1000;
+    }
+
+    nav a {
+      color: #38bdf8;
+      margin: 0 12px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    section {
+      max-width: 1050px;
+      margin: auto;
+      padding: 70px 20px;
+    }
+
+    h2 {
+      font-size: 30px;
+      color: #38bdf8;
+      margin-bottom: 20px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: #111827;
+      padding: 22px;
+      border-radius: 14px;
+      border: 1px solid #1f2937;
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      border-color: #38bdf8;
+    }
+
+    .price {
+      color: #22c55e;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    form input {
+      width: 100%;
+      padding: 12px;
+      margin: 6px 0;
+      border-radius: 8px;
+      border: none;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      background: #0f172a;
+      color: #94a3b8;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>CAS WEB</h1>
+  <p>Desarrollo web profesional para negocios que quieren vender más</p>
+
+  <a class="cta" 
+     href="https://wa.me/573132703266?text=Hola%20quiero%20una%20p%C3%A1gina%20web%20para%20mi%20negocio"
+     target="_blank">
+     Solicitar página web
+  </a>
+</header>
+
+<nav>
+  <a href="#sobre">Sobre mí</a>
+  <a href="#servicios">Servicios</a>
+  <a href="#proyectos">Proyectos</a>
+  <a href="#contacto">Contacto</a>
+</nav>
+
+<section id="sobre">
+  <h2>Sobre mí</h2>
+  <div class="card">
+    Desarrollador web enfocado en crear páginas modernas, rápidas y orientadas a ventas.
+    Ayudo a negocios pequeños a conseguir clientes por internet mediante páginas web.
+  </div>
+</section>
+
+<section id="servicios">
+  <h2>Servicios</h2>
+
+  <div class="grid">
+
+    <div class="card">
+      <h3>Página web básica</h3>
+      <p>Ideal para negocios pequeños.</p>
+      <div class="price">$150.000 COP</div>
+    </div>
+
+    <div class="card">
+      <h3>Landing de ventas</h3>
+      <p>Convierte visitas en clientes por WhatsApp.</p>
+      <div class="price">$250.000 COP</div>
+    </div>
+
+    <div class="card">
+      <h3>Portafolio profesional</h3>
+      <p>Ideal para profesionales y freelancers.</p>
+      <div class="price">$200.000 COP</div>
+    </div>
+
+  </div>
+</section>
+
+<section id="proyectos">
+  <h2>Proyectos</h2>
+
+  <div class="card">
+    <h3>Web Base44</h3>
+    <p>Proyecto creado con plataforma no-code.</p>
+    <a class="cta" href="https://web-lify.base44.app" target="_blank">
+      Ver proyecto
+    </a>
+  </div>
+</section>
+
+<section id="contacto">
+  <h2>Solicitar página web</h2>
+
+  <div class="card">
+
+    <p>Déjanos tus datos y te contactamos.</p>
+
+    <form action="https://formsubmit.co/tucorreo@gmail.com" method="POST">
+
+      <input type="text" name="nombre" placeholder="Tu nombre" required>
+      <input type="text" name="negocio" placeholder="Nombre del negocio" required>
+      <input type="tel" name="telefono" placeholder="WhatsApp" required>
+
+      <button class="cta" type="submit">
+        Enviar solicitud
+      </button>
+
+    </form>
+
+    <br>
+
+    <a class="cta" 
+       href="https://wa.me/573132703266?text=Hola%20vi%20tu%20portafolio%20y%20quiero%20una%20p%C3%A1gina%20web"
+       target="_blank">
+      📲 Hablar por WhatsApp
+    </a>
+
+  </div>
+</section>
+
+<footer>
+  © 2026 CAS WEB - Desarrollo web profesional
+</footer>
+
+</body>
+</html>
