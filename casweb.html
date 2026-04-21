@@ -1,0 +1,1284 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CAS WEB — Creación, Automatización y Soluciones</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --navy: #0f1f5c;
+    --navy-dark: #081244;
+    --navy-mid: #1a2e6e;
+    --orange: #E87722;
+    --orange-light: #f4944a;
+    --white: #ffffff;
+    --off-white: #f5f7fb;
+    --light-gray: #eef1f8;
+    --text-dark: #0d1a3a;
+    --text-muted: #5a6a8a;
+    --border: rgba(26,46,110,0.12);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    color: var(--text-dark);
+    background: var(--white);
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5 {
+    font-family: 'Sora', sans-serif;
+    letter-spacing: -0.02em;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 70px;
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+
+  .nav-logo-icon {
+    width: 42px; height: 42px;
+    background: var(--navy);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Sora', sans-serif;
+    font-weight: 800;
+    font-size: 13px;
+    color: white;
+    line-height: 1;
+    letter-spacing: -0.5px;
+  }
+
+  .nav-logo-icon span { color: var(--orange); }
+
+  .nav-brand {
+    font-family: 'Sora', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    color: var(--navy);
+  }
+
+  .nav-brand em { color: var(--orange); font-style: normal; }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-muted);
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--navy); }
+
+  .nav-cta {
+    background: var(--orange);
+    color: white !important;
+    padding: 9px 22px;
+    border-radius: 8px;
+    font-weight: 600 !important;
+    font-size: 14px !important;
+    transition: background 0.2s, transform 0.15s !important;
+  }
+
+  .nav-cta:hover { background: var(--orange-light) !important; transform: translateY(-1px); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 50%, #1e3a8a 100%);
+    display: flex;
+    align-items: center;
+    padding: 100px 5% 60px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -200px; right: -200px;
+    width: 700px; height: 700px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(232,119,34,0.15) 0%, transparent 70%);
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -100px; left: -100px;
+    width: 400px; height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,255,255,0.04) 0%, transparent 70%);
+  }
+
+  .hero-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 60px;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(232,119,34,0.15);
+    border: 1px solid rgba(232,119,34,0.3);
+    color: var(--orange-light);
+    font-size: 12px;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 100px;
+    margin-bottom: 24px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .hero-badge::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--orange);
+    border-radius: 50%;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.4rem, 4vw, 3.6rem);
+    font-weight: 800;
+    color: white;
+    line-height: 1.1;
+    margin-bottom: 20px;
+  }
+
+  .hero h1 span { color: var(--orange); }
+
+  .hero-sub {
+    font-size: 1.05rem;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.7;
+    margin-bottom: 36px;
+    max-width: 480px;
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--orange);
+    color: white;
+    padding: 14px 30px;
+    border-radius: 10px;
+    font-family: 'Sora', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: background 0.2s, transform 0.15s;
+  }
+
+  .btn-primary:hover { background: var(--orange-light); transform: translateY(-2px); }
+
+  .btn-secondary {
+    background: transparent;
+    color: white;
+    padding: 14px 30px;
+    border-radius: 10px;
+    font-family: 'Sora', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    text-decoration: none;
+    border: 1.5px solid rgba(255,255,255,0.3);
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .btn-secondary:hover { border-color: white; background: rgba(255,255,255,0.07); }
+
+  .hero-stats {
+    display: flex;
+    gap: 32px;
+    margin-top: 48px;
+    padding-top: 36px;
+    border-top: 1px solid rgba(255,255,255,0.12);
+  }
+
+  .hero-stat-num {
+    font-family: 'Sora', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: white;
+  }
+
+  .hero-stat-num span { color: var(--orange); }
+
+  .hero-stat-label {
+    font-size: 12px;
+    color: rgba(255,255,255,0.5);
+    margin-top: 2px;
+  }
+
+  .hero-visual {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .hero-card-stack {
+    position: relative;
+    width: 380px;
+    height: 380px;
+  }
+
+  .hero-pill {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 16px;
+    padding: 20px 24px;
+    position: absolute;
+    backdrop-filter: blur(8px);
+  }
+
+  .hero-pill-1 {
+    top: 20px; left: 0;
+    width: 200px;
+    animation: float1 4s ease-in-out infinite;
+  }
+
+  .hero-pill-2 {
+    top: 130px; right: 0;
+    width: 200px;
+    animation: float2 5s ease-in-out infinite;
+  }
+
+  .hero-pill-3 {
+    bottom: 30px; left: 40px;
+    width: 220px;
+    animation: float3 4.5s ease-in-out infinite;
+  }
+
+  @keyframes float1 { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+  @keyframes float2 { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-14px)} }
+  @keyframes float3 { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+
+  .pill-icon {
+    width: 36px; height: 36px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+  }
+
+  .pill-title {
+    font-family: 'Sora', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 3px;
+  }
+
+  .pill-desc {
+    font-size: 11px;
+    color: rgba(255,255,255,0.5);
+  }
+
+  .hero-center-logo {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100px; height: 100px;
+    background: var(--navy-dark);
+    border: 2px solid rgba(232,119,34,0.4);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Sora', sans-serif;
+    font-weight: 800;
+    font-size: 24px;
+    color: white;
+  }
+
+  .hero-center-logo span { color: var(--orange); }
+
+  /* ── PILLARS ── */
+  .pillars {
+    background: var(--off-white);
+    padding: 28px 5%;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .pillars-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 60px;
+  }
+
+  .pillar-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--navy);
+    font-family: 'Sora', sans-serif;
+  }
+
+  .pillar-icon { font-size: 18px; }
+
+  .pillar-sep {
+    width: 1px;
+    height: 28px;
+    background: var(--border);
+  }
+
+  /* ── SECTION BASE ── */
+  section { padding: 90px 5%; }
+
+  .section-inner { max-width: 1200px; margin: 0 auto; }
+
+  .section-label {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 12px;
+  }
+
+  .section-title {
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    font-weight: 800;
+    color: var(--navy);
+    line-height: 1.15;
+    margin-bottom: 16px;
+  }
+
+  .section-desc {
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+    max-width: 560px;
+  }
+
+  /* ── SERVICES ── */
+  #servicios { background: white; }
+
+  .services-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 60px;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .service-card {
+    background: var(--off-white);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 36px 30px;
+    transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--orange);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s;
+  }
+
+  .service-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 24px 60px rgba(15,31,92,0.1);
+    border-color: rgba(232,119,34,0.2);
+  }
+
+  .service-card:hover::before { transform: scaleX(1); }
+
+  .service-icon-wrap {
+    width: 56px; height: 56px;
+    background: var(--navy);
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 26px;
+    margin-bottom: 20px;
+  }
+
+  .service-card h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 10px;
+  }
+
+  .service-card p {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+
+  .service-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .service-tag {
+    background: rgba(26,46,110,0.07);
+    color: var(--navy-mid);
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 100px;
+  }
+
+  /* ── HOW WE WORK ── */
+  #proceso { background: var(--off-white); }
+
+  .proceso-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    margin-top: 60px;
+  }
+
+  .steps-list { display: flex; flex-direction: column; gap: 0; }
+
+  .step-item {
+    display: flex;
+    gap: 20px;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+  }
+
+  .step-item:last-child { border-bottom: none; }
+
+  .step-num {
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    background: var(--light-gray);
+    border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Sora', sans-serif;
+    font-weight: 800;
+    font-size: 16px;
+    color: var(--text-muted);
+    flex-shrink: 0;
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .step-item.active .step-num {
+    background: var(--orange);
+    color: white;
+    border-color: var(--orange);
+  }
+
+  .step-body h4 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 4px;
+  }
+
+  .step-body p {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  .proceso-visual {
+    background: var(--navy);
+    border-radius: 24px;
+    padding: 40px;
+    min-height: 360px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .proceso-visual::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(232,119,34,0.18) 0%, transparent 70%);
+  }
+
+  .visual-content { text-align: center; position: relative; z-index: 1; }
+
+  .visual-icon { font-size: 60px; margin-bottom: 16px; }
+
+  .visual-title {
+    font-family: 'Sora', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 8px;
+  }
+
+  .visual-desc {
+    font-size: 13px;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.6;
+    max-width: 240px;
+  }
+
+  /* ── WHY US ── */
+  #nosotros { background: white; }
+
+  .why-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    margin-top: 60px;
+  }
+
+  .why-image-block {
+    background: linear-gradient(135deg, var(--navy) 0%, #1e3a8a 100%);
+    border-radius: 28px;
+    padding: 50px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .why-image-block::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: 50%;
+    transform: translateX(-50%);
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(232,119,34,0.12) 0%, transparent 70%);
+  }
+
+  .why-big-text {
+    font-family: 'Sora', sans-serif;
+    font-size: 5rem;
+    font-weight: 800;
+    color: white;
+    line-height: 1;
+    position: relative; z-index: 1;
+  }
+
+  .why-big-text span { color: var(--orange); }
+
+  .why-big-label {
+    font-size: 14px;
+    color: rgba(255,255,255,0.6);
+    margin-top: 8px;
+    position: relative; z-index: 1;
+  }
+
+  .why-reasons { display: flex; flex-direction: column; gap: 28px; }
+
+  .why-reason {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+
+  .why-reason-icon {
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    background: rgba(232,119,34,0.1);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+
+  .why-reason h4 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 4px;
+  }
+
+  .why-reason p {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  /* ── TESTIMONIOS ── */
+  #testimonios { background: var(--off-white); }
+
+  .testimonios-header { margin-bottom: 52px; }
+
+  .testimonios-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .testimonio-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 30px;
+  }
+
+  .stars { color: var(--orange); font-size: 14px; letter-spacing: 2px; margin-bottom: 14px; }
+
+  .testimonio-text {
+    font-size: 14px;
+    color: var(--text-dark);
+    line-height: 1.7;
+    margin-bottom: 20px;
+    font-style: italic;
+  }
+
+  .testimonio-author {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .author-avatar {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: var(--navy);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Sora', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: white;
+    flex-shrink: 0;
+  }
+
+  .author-name {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--navy);
+  }
+
+  .author-role {
+    font-size: 11px;
+    color: var(--text-muted);
+  }
+
+  /* ── CTA ── */
+  .cta-section {
+    background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 60%, #1e3a8a 100%);
+    padding: 90px 5%;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    top: -100px; right: 10%;
+    width: 400px; height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(232,119,34,0.18) 0%, transparent 70%);
+  }
+
+  .cta-inner { max-width: 680px; margin: 0 auto; position: relative; z-index: 1; }
+
+  .cta-section h2 {
+    font-size: clamp(1.8rem, 3vw, 2.8rem);
+    font-weight: 800;
+    color: white;
+    margin-bottom: 16px;
+    line-height: 1.15;
+  }
+
+  .cta-section h2 span { color: var(--orange); }
+
+  .cta-section p {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 40px;
+    line-height: 1.7;
+  }
+
+  .cta-form {
+    display: flex;
+    gap: 12px;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  .cta-form input {
+    flex: 1;
+    background: rgba(255,255,255,0.1);
+    border: 1.5px solid rgba(255,255,255,0.25);
+    border-radius: 10px;
+    padding: 14px 18px;
+    font-size: 14px;
+    color: white;
+    font-family: 'DM Sans', sans-serif;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .cta-form input::placeholder { color: rgba(255,255,255,0.4); }
+  .cta-form input:focus { border-color: var(--orange); }
+
+  .cta-form button {
+    background: var(--orange);
+    color: white;
+    border: none;
+    padding: 14px 26px;
+    border-radius: 10px;
+    font-family: 'Sora', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.2s, transform 0.15s;
+  }
+
+  .cta-form button:hover { background: var(--orange-light); transform: translateY(-1px); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--navy-dark);
+    padding: 60px 5% 32px;
+    color: rgba(255,255,255,0.6);
+  }
+
+  .footer-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 48px;
+  }
+
+  .footer-brand p {
+    font-size: 13px;
+    line-height: 1.7;
+    margin-top: 14px;
+    max-width: 280px;
+  }
+
+  .footer-col h5 {
+    font-family: 'Sora', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 16px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+
+  .footer-col ul a {
+    text-decoration: none;
+    font-size: 13px;
+    color: rgba(255,255,255,0.55);
+    transition: color 0.2s;
+  }
+
+  .footer-col ul a:hover { color: var(--orange); }
+
+  .footer-bottom {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 12px;
+    color: rgba(255,255,255,0.35);
+  }
+
+  .footer-logo-text {
+    font-family: 'Sora', sans-serif;
+    font-weight: 800;
+    font-size: 22px;
+    color: white;
+  }
+
+  .footer-logo-text span { color: var(--orange); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .fade-up { animation: fadeUp 0.7s ease both; }
+  .delay-1 { animation-delay: 0.1s; }
+  .delay-2 { animation-delay: 0.2s; }
+  .delay-3 { animation-delay: 0.3s; }
+  .delay-4 { animation-delay: 0.4s; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .hero-grid { grid-template-columns: 1fr; }
+    .hero-visual { display: none; }
+    .services-grid { grid-template-columns: 1fr 1fr; }
+    .proceso-grid { grid-template-columns: 1fr; }
+    .why-grid { grid-template-columns: 1fr; }
+    .testimonios-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .pillars-inner { gap: 28px; flex-wrap: wrap; justify-content: flex-start; }
+  }
+
+  @media (max-width: 600px) {
+    .services-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    .cta-form { flex-direction: column; }
+    .hero-stats { flex-direction: column; gap: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-icon">CA<span>S</span></div>
+    <span class="nav-brand">CAS <em>WEB</em></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#proceso">Proceso</a></li>
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#testimonios">Clientes</a></li>
+    <li><a href="#contacto" class="nav-cta">Contáctanos</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid">
+    <div>
+      <div class="hero-badge fade-up">Transformación Digital</div>
+      <h1 class="fade-up delay-1">
+        Creamos soluciones<br><span>web que impulsan</span><br>tu negocio
+      </h1>
+      <p class="hero-sub fade-up delay-2">
+        En CAS WEB desarrollamos software a medida, automatizamos procesos y construimos páginas web que generan resultados reales para tu empresa.
+      </p>
+      <div class="hero-ctas fade-up delay-3">
+        <a href="#contacto" class="btn-primary">Empezar proyecto →</a>
+        <a href="#servicios" class="btn-secondary">Ver servicios</a>
+      </div>
+      <div class="hero-stats fade-up delay-4">
+        <div>
+          <div class="hero-stat-num">50<span>+</span></div>
+          <div class="hero-stat-label">Proyectos completados</div>
+        </div>
+        <div>
+          <div class="hero-stat-num">98<span>%</span></div>
+          <div class="hero-stat-label">Clientes satisfechos</div>
+        </div>
+        <div>
+          <div class="hero-stat-num">5<span>+</span></div>
+          <div class="hero-stat-label">Años de experiencia</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-card-stack">
+        <div class="hero-pill hero-pill-1">
+          <div class="pill-icon" style="background:rgba(232,119,34,0.15)">💡</div>
+          <div class="pill-title">Creación Web</div>
+          <div class="pill-desc">Diseño y desarrollo a medida</div>
+        </div>
+        <div class="hero-pill hero-pill-2">
+          <div class="pill-icon" style="background:rgba(255,255,255,0.1)">⚙️</div>
+          <div class="pill-title">Automatización</div>
+          <div class="pill-desc">Flujos inteligentes y eficientes</div>
+        </div>
+        <div class="hero-pill hero-pill-3">
+          <div class="pill-icon" style="background:rgba(29,158,117,0.15)">📊</div>
+          <div class="pill-title">Soluciones</div>
+          <div class="pill-desc">Análisis y consultoría de software</div>
+        </div>
+        <div class="hero-center-logo">CA<span>S</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PILLARS BAR -->
+<div class="pillars">
+  <div class="pillars-inner">
+    <div class="pillar-item"><span class="pillar-icon">💡</span> Creación</div>
+    <div class="pillar-sep"></div>
+    <div class="pillar-item"><span class="pillar-icon">⚙️</span> Automatización</div>
+    <div class="pillar-sep"></div>
+    <div class="pillar-item"><span class="pillar-icon">📈</span> Soluciones</div>
+    <div class="pillar-sep"></div>
+    <div class="pillar-item"><span class="pillar-icon">🚀</span> Desarrollo Ágil</div>
+    <div class="pillar-sep"></div>
+    <div class="pillar-item"><span class="pillar-icon">🔐</span> Seguridad Garantizada</div>
+  </div>
+</div>
+
+<!-- SERVICIOS -->
+<section id="servicios">
+  <div class="section-inner">
+    <div class="services-header">
+      <div>
+        <div class="section-label">Nuestros Servicios</div>
+        <h2 class="section-title">Todo lo que tu empresa<br>necesita en tecnología</h2>
+      </div>
+      <p class="section-desc">Ofrecemos soluciones integrales adaptadas a cada etapa de tu negocio, desde el análisis hasta la implementación y soporte.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon-wrap">🌐</div>
+        <h3>Creación de Páginas Web</h3>
+        <p>Desarrollamos sitios web modernos, responsivos y optimizados para posicionamiento en buscadores. Tu presencia digital con impacto real.</p>
+        <div class="service-tags">
+          <span class="service-tag">Landing Pages</span>
+          <span class="service-tag">E-commerce</span>
+          <span class="service-tag">Portales</span>
+          <span class="service-tag">SEO</span>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon-wrap">⚙️</div>
+        <h3>Automatización de Procesos</h3>
+        <p>Eliminamos tareas manuales y repetitivas mediante flujos automatizados que ahorran tiempo, reducen errores y aumentan la productividad.</p>
+        <div class="service-tags">
+          <span class="service-tag">RPA</span>
+          <span class="service-tag">Integraciones API</span>
+          <span class="service-tag">Workflows</span>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon-wrap">📊</div>
+        <h3>Análisis de Software</h3>
+        <p>Evaluamos tus sistemas actuales, identificamos cuellos de botella y proponemos mejoras técnicas con base en datos y mejores prácticas.</p>
+        <div class="service-tags">
+          <span class="service-tag">Auditoría</span>
+          <span class="service-tag">Consultoría</span>
+          <span class="service-tag">Reportes</span>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon-wrap">💻</div>
+        <h3>Desarrollo de Software a Medida</h3>
+        <p>Construimos aplicaciones web y sistemas empresariales personalizados que se adaptan perfectamente a tus procesos y necesidades únicas.</p>
+        <div class="service-tags">
+          <span class="service-tag">Apps Web</span>
+          <span class="service-tag">Sistemas ERP</span>
+          <span class="service-tag">Dashboards</span>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon-wrap">🔗</div>
+        <h3>Integraciones y APIs</h3>
+        <p>Conectamos tus herramientas, plataformas y bases de datos para que toda tu información fluya sin fricción entre sistemas.</p>
+        <div class="service-tags">
+          <span class="service-tag">REST API</span>
+          <span class="service-tag">Webhooks</span>
+          <span class="service-tag">Sincronización</span>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon-wrap">🛡️</div>
+        <h3>Soporte y Mantenimiento</h3>
+        <p>Acompañamos tu operación con soporte técnico continuo, actualizaciones de seguridad y mejoras evolutivas a tu plataforma.</p>
+        <div class="service-tags">
+          <span class="service-tag">Soporte 24/7</span>
+          <span class="service-tag">Actualizaciones</span>
+          <span class="service-tag">Backups</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESO -->
+<section id="proceso">
+  <div class="section-inner">
+    <div class="section-label">Metodología</div>
+    <h2 class="section-title">Así trabajamos contigo</h2>
+    <div class="proceso-grid">
+      <div class="steps-list" id="stepsList">
+        <div class="step-item active" data-step="0" onclick="selectStep(0)">
+          <div class="step-num">01</div>
+          <div class="step-body">
+            <h4>Diagnóstico y Análisis</h4>
+            <p>Entendemos tus procesos, objetivos y retos para diseñar la solución más efectiva.</p>
+          </div>
+        </div>
+        <div class="step-item" data-step="1" onclick="selectStep(1)">
+          <div class="step-num">02</div>
+          <div class="step-body">
+            <h4>Diseño y Planificación</h4>
+            <p>Creamos la arquitectura de la solución, wireframes y plan de trabajo detallado.</p>
+          </div>
+        </div>
+        <div class="step-item" data-step="2" onclick="selectStep(2)">
+          <div class="step-num">03</div>
+          <div class="step-body">
+            <h4>Desarrollo e Implementación</h4>
+            <p>Construimos la solución con tecnologías modernas en ciclos ágiles con entregas frecuentes.</p>
+          </div>
+        </div>
+        <div class="step-item" data-step="3" onclick="selectStep(3)">
+          <div class="step-num">04</div>
+          <div class="step-body">
+            <h4>Pruebas y Entrega</h4>
+            <p>Garantizamos calidad con pruebas rigurosas y hacemos la entrega con capacitación incluida.</p>
+          </div>
+        </div>
+        <div class="step-item" data-step="4" onclick="selectStep(4)">
+          <div class="step-num">05</div>
+          <div class="step-body">
+            <h4>Soporte Post-entrega</h4>
+            <p>Te acompañamos después del lanzamiento con soporte y mejoras continuas.</p>
+          </div>
+        </div>
+      </div>
+      <div class="proceso-visual" id="procesoVisual">
+        <div class="visual-content">
+          <div class="visual-icon" id="visualIcon">🔍</div>
+          <div class="visual-title" id="visualTitle">Diagnóstico y Análisis</div>
+          <div class="visual-desc" id="visualDesc">Comenzamos por entender profundamente tu negocio, tus procesos actuales y los objetivos que quieres alcanzar con la tecnología.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- POR QUÉ NOSOTROS -->
+<section id="nosotros">
+  <div class="section-inner">
+    <div class="why-grid">
+      <div class="why-image-block">
+        <div class="why-big-text">CA<span>S</span></div>
+        <div class="why-big-label" style="color:rgba(255,255,255,0.6);font-family:'DM Sans'">Creación · Automatización · Soluciones</div>
+        <div style="margin-top:32px;display:flex;flex-direction:column;gap:12px;position:relative;z-index:1">
+          <div style="background:rgba(255,255,255,0.08);border-radius:12px;padding:14px 18px;text-align:left;">
+            <div style="font-family:'Sora';font-size:1.4rem;font-weight:800;color:white">50<span style="color:var(--orange)">+</span></div>
+            <div style="font-size:12px;color:rgba(255,255,255,0.5);margin-top:2px">Proyectos exitosos</div>
+          </div>
+          <div style="background:rgba(255,255,255,0.08);border-radius:12px;padding:14px 18px;text-align:left;">
+            <div style="font-family:'Sora';font-size:1.4rem;font-weight:800;color:white">5<span style="color:var(--orange)">+</span></div>
+            <div style="font-size:12px;color:rgba(255,255,255,0.5);margin-top:2px">Años de experiencia</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="section-label">¿Por qué CAS WEB?</div>
+        <h2 class="section-title">Tu socio estratégico en tecnología</h2>
+        <p class="section-desc" style="margin-bottom:36px">No somos solo proveedores de código — somos aliados que entienden tu negocio y proponen soluciones que generan valor real.</p>
+        <div class="why-reasons">
+          <div class="why-reason">
+            <div class="why-reason-icon">🎯</div>
+            <div>
+              <h4>Enfoque en resultados</h4>
+              <p>Cada decisión técnica está orientada a generar valor real para tu negocio, no solo entregar código.</p>
+            </div>
+          </div>
+          <div class="why-reason">
+            <div class="why-reason-icon">⚡</div>
+            <div>
+              <h4>Entregas rápidas y confiables</h4>
+              <p>Trabajamos con metodologías ágiles para que veas avances desde las primeras semanas.</p>
+            </div>
+          </div>
+          <div class="why-reason">
+            <div class="why-reason-icon">🤝</div>
+            <div>
+              <h4>Comunicación transparente</h4>
+              <p>Te informamos del avance en cada etapa. Sin sorpresas, sin letra pequeña.</p>
+            </div>
+          </div>
+          <div class="why-reason">
+            <div class="why-reason-icon">🔧</div>
+            <div>
+              <h4>Tecnología de vanguardia</h4>
+              <p>Usamos las herramientas y lenguajes más modernos para que tu solución sea escalable y duradera.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIOS -->
+<section id="testimonios">
+  <div class="section-inner">
+    <div class="testimonios-header">
+      <div class="section-label">Testimonios</div>
+      <h2 class="section-title">Lo que dicen nuestros clientes</h2>
+    </div>
+    <div class="testimonios-grid">
+      <div class="testimonio-card">
+        <div class="stars">★★★★★</div>
+        <p class="testimonio-text">"CAS WEB transformó completamente nuestra operación. Automatizaron procesos que nos tomaban horas y ahora corren solos. El equipo es muy profesional y siempre está disponible."</p>
+        <div class="testimonio-author">
+          <div class="author-avatar">MR</div>
+          <div>
+            <div class="author-name">María Rodríguez</div>
+            <div class="author-role">Gerente de Operaciones · LogiCo</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonio-card">
+        <div class="stars">★★★★★</div>
+        <p class="testimonio-text">"Desarrollaron nuestro portal en tiempo récord y con una calidad impecable. La comunicación fue excelente durante todo el proyecto. Definitivamente los recomiendo."</p>
+        <div class="testimonio-author">
+          <div class="author-avatar">CA</div>
+          <div>
+            <div class="author-name">Carlos Arias</div>
+            <div class="author-role">CEO · Constructora Arias</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonio-card">
+        <div class="stars">★★★★★</div>
+        <p class="testimonio-text">"La página web que nos crearon aumentó nuestras consultas en un 60% el primer mes. Entienden muy bien el negocio antes de ponerse a trabajar."</p>
+        <div class="testimonio-author">
+          <div class="author-avatar">LP</div>
+          <div>
+            <div class="author-name">Laura Pineda</div>
+            <div class="author-role">Directora · Clínica Vitalis</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-section" id="contacto">
+  <div class="cta-inner">
+    <div class="section-label" style="color:var(--orange)">Hablemos</div>
+    <h2>¿Listo para llevar tu negocio<br>al siguiente <span>nivel digital</span>?</h2>
+    <p>Cuéntanos tu idea o reto. Nuestro equipo analizará tu caso y te propone la mejor solución sin costo.</p>
+    <div class="cta-form">
+      <input type="email" placeholder="Tu correo electrónico" />
+      <button onclick="alert('¡Gracias! Nos pondremos en contacto contigo pronto.')">Solicitar consulta →</button>
+    </div>
+    <p style="margin-top:16px;font-size:12px;color:rgba(255,255,255,0.4)">Sin compromisos. Respuesta en menos de 24 horas.</p>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo-text">CA<span>S</span> WEB</div>
+      <p>Creación, Automatización y Soluciones web para empresas que quieren crecer con tecnología inteligente.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Servicios</h5>
+      <ul>
+        <li><a href="#servicios">Páginas Web</a></li>
+        <li><a href="#servicios">Automatización</a></li>
+        <li><a href="#servicios">Software a Medida</a></li>
+        <li><a href="#servicios">Análisis</a></li>
+        <li><a href="#servicios">Integraciones</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Empresa</h5>
+      <ul>
+        <li><a href="#nosotros">Quiénes somos</a></li>
+        <li><a href="#proceso">Proceso</a></li>
+        <li><a href="#testimonios">Clientes</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Contacto</h5>
+      <ul>
+        <li><a href="mailto:info@casweb.co">info@casweb.co</a></li>
+        <li><a href="tel:+573000000000">+57 300 000 0000</a></li>
+        <li><a href="#">Colombia</a></li>
+        <li><a href="#">WhatsApp</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 CAS WEB. Todos los derechos reservados.</span>
+    <span>Creación · Automatización · Soluciones</span>
+  </div>
+</footer>
+
+<script>
+const steps = [
+  { icon: '🔍', title: 'Diagnóstico y Análisis', desc: 'Comenzamos por entender profundamente tu negocio, tus procesos actuales y los objetivos que quieres alcanzar con la tecnología.' },
+  { icon: '🎨', title: 'Diseño y Planificación', desc: 'Creamos la arquitectura, los wireframes y el plan de trabajo con tiempos y entregables claros para que sepas qué esperar.' },
+  { icon: '💻', title: 'Desarrollo e Implementación', desc: 'Construimos tu solución con ciclos ágiles de dos semanas, con demostraciones frecuentes para que puedas dar retroalimentación.' },
+  { icon: '✅', title: 'Pruebas y Entrega', desc: 'Realizamos pruebas exhaustivas de calidad, seguridad y rendimiento antes de la entrega formal con capacitación incluida.' },
+  { icon: '🛡️', title: 'Soporte Post-entrega', desc: 'Te acompañamos después del lanzamiento con soporte técnico continuo, actualizaciones y mejoras evolutivas.' }
+];
+
+function selectStep(idx) {
+  document.querySelectorAll('.step-item').forEach((el, i) => {
+    el.classList.toggle('active', i === idx);
+  });
+  const s = steps[idx];
+  document.getElementById('visualIcon').textContent = s.icon;
+  document.getElementById('visualTitle').textContent = s.title;
+  document.getElementById('visualDesc').textContent = s.desc;
+}
+</script>
+</body>
+</html>
